@@ -65,16 +65,22 @@ module.exports = {
     let wallet_increment = await walletService.increment(user.sub, transaction_amt)
     return wallet_increment
   },
+
+  
   validateMeter: async (req, res) => {
     let result = await husmoServices.validateMeter(req, res);
     console.log(result);
     res.send(result);
   },
+
+
   validateIUC: async (req, res) => {
     let result = await husmoServices.validateIUC(req, res);
     console.log(result);
     res.send(result);
   },
+
+
   cablesub: async (req, res) => {
     let result = await husmoServices.cablesub(req, res);
     let user = await res.locals.user;

@@ -168,10 +168,12 @@ module.exports = {
     try {
       let token = "Token " + process.env.HUSMO_TOKEN;
       let base_url = process.env.HUSMO_BASEURL;
-      let { cardnumber, cablename } = req.body;
-      let url = `${base_url}ajax/validate_iuc?smart_card_number=${cardnumber}&cablename=${cablename}`;
-      // console.log(e)
-      
+      let data = {
+        smart_card_number: req.body.smart_card_number,
+        cablename : req.body.cablename,
+    };
+      let url = `${base_url}ajax/validate_iuc?smart_card_number=${data.smart_card_number}&cablename=${data.cablename}`;
+      //let _url = `${base_url}ajax/validate_iuc?smart_card_number=7032438876&cablename=GOTV`;
       let config = {
         headers: {
           Authorization: token,
@@ -183,7 +185,7 @@ module.exports = {
       let result = await apiUtils.get(url, config);
       return result;
     } catch (e) {
-      console.log(e);
+      console.log(e);   
       return e;
     }
   },
