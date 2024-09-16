@@ -1,3 +1,5 @@
+/** @format */
+
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
@@ -8,15 +10,16 @@ const server = require("http").createServer(app);
 var indexRouter = require("./src/routes/index");
 const { default: axios } = require("axios");
 
-
-
-
 var app = express();
 process.env.TZ = "UTC+1";
 const corsOption = {
-  credentials: true,
-  origin: "*", //this will eventually be restricted on production
-  // optionsSuccessStatus: 200,
+	credentials: true,
+	origin: "https://sdc-frontend.onrender.com", //this will eventually be restricted on production
+	credentials: true,
+	method: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
+	allowedHeader: ["Content-Type", "Authurization"],
+	exposedHeader: ["Authorization"],
+	// optionsSuccessStatus: 200,
 };
 app.use(cors(corsOption));
 // view engine setup
@@ -39,33 +42,31 @@ app.use("/", indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  next(createError(404));
+	next(createError(404));
 });
 
 // error handler
 app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
+	// set locals, only providing error in development
+	res.locals.message = err.message;
+	res.locals.error = req.app.get("env") === "development" ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.send(err);
+	// render the error page
+	res.status(err.status || 500);
+	res.send(err);
 });
 
 axios.interceptors.response.use(
-  (response) => {
-    return response.data;
-  },
-  (error) => {
-
-    if (error.response.data.code == 401 || error.response.status == 401) {
-     
-    }
-    return error.response.data;
-  }
-)
+	(response) => {
+		return response.data;
+	},
+	(error) => {
+		if (error.response.data.code == 401 || error.response.status == 401) {
+		}
+		return error.response.data;
+	}
+);
 
 app.listen(5030, function () {
-  console.log("running on port 5030");
+	console.log("running on port 5030");
 });
