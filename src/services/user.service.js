@@ -220,19 +220,27 @@ module.exports = {
 			where: { id: id },
 		});
 	},
-	findByUsername: async (username) => {
+	// findByUsername: async (username) => {
+	// 	try {
+	// 		return await User.findOne({
+	// 			include: [
+	// 				{
+	// 					model: Wallet,
+	// 				},
+	// 				{
+	// 					model: Profile,
+	// 				},
+	// 			],
+	// 			where: { username: username },
+	// 		});
+	// 	} catch (e) {
+	// 		console.log(e);
+	// 		throw e;
+	// 	}
+	// },
+	findByEmail: async (email) => {
 		try {
-			return await User.findOne({
-				include: [
-					{
-						model: Wallet,
-					},
-					{
-						model: Profile,
-					},
-				],
-				where: { username: username },
-			});
+			return await User.findOne({ where: { email: email } });
 		} catch (e) {
 			console.log(e);
 			throw e;
@@ -241,7 +249,6 @@ module.exports = {
 	createUserOnly: async (username) => {
 		let transaction = await db.rest.transaction();
 		let passwordhash = await bcrypt.hash("Password@1", 10);
-		//  console.log(transaction);
 		try {
 			let user = await User.create(
 				{
