@@ -7,9 +7,7 @@ const userService = require("../services/user.service");
 module.exports = {
 	signup: async (req, res) => {
 		try {
-			console.log(req.body);
 			let check = await userService.findByEmail(req.body.email);
-			console.log(check);
 			let result = responses.success("Account created successfully");
 			if (check == null) {
 				let user = await userService.create(req.body);
@@ -18,6 +16,7 @@ module.exports = {
 			}
 			res.status(result.code).send(result);
 		} catch (e) {
+			console.log(req.body);
 			throw e;
 		}
 	},
