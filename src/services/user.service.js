@@ -240,11 +240,24 @@ module.exports = {
 	// },
 	findByEmail: async (email) => {
 		try {
-			return await User.findOne({ where: { email: email } });
+			if (!validateEmail(email)) {
+				throw new Error("Invalid email format");
+			}
+			const user = await User.findOne({ where: { email } });
+			if (!user) {
+				throw new Error("User not found");
+			}
+			return user;
 		} catch (e) {
-			console.log(e);
-			throw e;
+			console.error("Error finding user by email:", e);
+			throw new Error(e.message);
 		}
+	},
+
+	// Simple email validation function
+	validateEmail: (email) => {
+		const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		return re.test(String(email).toLowerCase());
 	},
 	createUserOnly: async (username) => {
 		let transaction = await db.rest.transaction();
