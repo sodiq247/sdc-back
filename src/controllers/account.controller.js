@@ -8,26 +8,14 @@ module.exports = {
 	signup: async (req, res) => {
 		try {
 			let check = await userService.findByUsername(req.body.email);
-			if (check === null) {
-				const result = responses.success("User already exist");
-				return res.status(403).json(result);
-			}
-
-			let user = await userService.create(req.body);
+			console.log(check);
 			let result = responses.success("Account created successfully");
-			return res.status(200).json({
-				result,
-				user,
-			});
-
-			// let result = responses.success("Account created successfully");
-			// if (check == null) {
-			// 	let user = await userService.create(req.body);
-			// 	console.log(user);
-			// } else {
-			// 	result = responses.badRequest("User already exist");
-			// }
-			// res.status(result.code).send(result);
+			if (check == null) {
+				let user = await userService.create(req.body);
+			} else {
+				result = responses.badRequest("User already exist");
+			}
+			res.status(result.code).send(result);
 		} catch (e) {
 			throw e;
 		}
