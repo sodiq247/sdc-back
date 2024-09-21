@@ -7,11 +7,6 @@ const { DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT, DB_DIALECT } =
 
 console.log("Here we go:", {
 	DB_HOST,
-	DB_USER,
-	DB_PASSWORD,
-	DB_NAME,
-	DB_PORT,
-	DB_DIALECT,
 });
 
 module.exports = {
