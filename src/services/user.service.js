@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
 const mailService = require("./mail.service");
 const sequelize = require("sequelize");
 const { User, Profile, Wallet, State, UserRole, Role, Otp } = db;
+const helper = require("../helpers/utils");
 module.exports = {
 	create: async (data) => {
 		console.log(data);
@@ -240,7 +241,7 @@ module.exports = {
 	// },
 	findByEmail: async (email) => {
 		try {
-			if (!validateEmail(email)) {
+			if (!helper.validateEmail(email)) {
 				throw new Error("Invalid email format");
 			}
 			const user = await User.findOne({ where: { email } });
@@ -252,12 +253,6 @@ module.exports = {
 			console.error("Error finding user by email:", e);
 			throw new Error(e.message);
 		}
-	},
-
-	// Simple email validation function
-	validateEmail: (email) => {
-		const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-		return re.test(String(email).toLowerCase());
 	},
 	createUserOnly: async (username) => {
 		let transaction = await db.rest.transaction();

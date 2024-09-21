@@ -9,8 +9,8 @@ module.exports = {
 		try {
 			let check = await userService.findByEmail(req.body.email);
 			let result = responses.success("Account created successfully");
-			if (check == null) {
-				let user = await userService.create(req.body);
+			if (check === null) {
+				await userService.create(req.body);
 			} else {
 				result = responses.badRequest("User already exist");
 			}
