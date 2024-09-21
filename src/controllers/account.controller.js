@@ -7,15 +7,16 @@ const userService = require("../services/user.service");
 module.exports = {
 	signup: async (req, res) => {
 		try {
-			let check = await userService.findByUsername(req.body.email);
-			console.log(check);
-			let result = responses.success("Account created successfully");
-			if (check == null) {
-				let user = await userService.create(req.body);
-			} else {
-				result = responses.badRequest("User already exist");
-			}
-			res.status(result.code).send(result);
+			return res.status(200).json({ message: "Here we Go!!!" });
+			// let check = await userService.findByUsername(req.body.email);
+			// console.log(check);
+			// let result = responses.success("Account created successfully");
+			// if (check == null) {
+			// 	let user = await userService.create(req.body);
+			// } else {
+			// 	result = responses.badRequest("User already exist");
+			// }
+			// res.status(result.code).send(result);
 		} catch (e) {
 			throw e;
 		}
