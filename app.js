@@ -22,12 +22,7 @@ const corsOption = {
 	// optionsSuccessStatus: 200,
 };
 app.use(cors(corsOption));
-// view engine setup
-// app.set('view engine', 'ejs')
-// app.get("/s", (req,res)=>{
-//   console.log("ffffff");
-//   res.render('index')
-// })
+
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
