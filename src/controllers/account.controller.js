@@ -7,7 +7,7 @@ const userService = require("../services/user.service");
 module.exports = {
 	signup: async (req, res) => {
 		try {
-			let check = await userService.findByUsername(req.body.email);
+			let check = await userService.findByEmail(req.body.email);
 			console.log(check);
 			let result = responses.success("Account created successfully");
 			if (check == null) {
