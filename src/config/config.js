@@ -5,9 +5,13 @@ require("dotenv").config();
 const { DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT, DB_DIALECT } =
 	process.env;
 
-console.log("Here we go:", {
-	DB_HOST,
-});
+	console.log("DB_HOST:", DB_HOST);
+	console.log("DB_USER:", DB_USER);
+	console.log("DB_PASSWORD:", DB_PASSWORD);
+	console.log("DB_NAME:", DB_NAME);
+	console.log("DB_PORT:", DB_PORT);
+	console.log("DB_DIALECT:", DB_DIALECT);
+	
 
 module.exports = {
 	development: {
