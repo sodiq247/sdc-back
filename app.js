@@ -14,10 +14,10 @@ var app = express();
 process.env.TZ = "UTC+1";
 const corsOption = {
 	credentials: true,
-	origin: "https://sdc-frontend.onrender.com/", //this will eventually be restricted on production
+	origin: "https://sdc-frontend.onrender.com", //this will eventually be restricted on production
 	credentials: true,
 	method: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
-	allowedHeader: ["Content-Type", "Authurization"],
+	allowedHeader: ["Content-Type", "Authorization"],
 	exposedHeader: ["Authorization"],
 	// optionsSuccessStatus: 200,
 };
