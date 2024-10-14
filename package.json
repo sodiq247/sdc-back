@@ -1,7 +1,7 @@
 {
   "name": "sodiq",
   "version": "0.0.0",
-  "private": true,dpg-cs6i632j1k6c73a4fvag-a.oregon-postgres.render.com
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run migrate",
