@@ -12,55 +12,55 @@ const { default: axios } = require("axios");
 
 var app = express();
 process.env.TZ = "UTC+1";
-
-// CORS configuration
 const corsOption = {
-    credentials: true,
-    origin: "https://sdc-frontend.onrender.com", // Adjust as necessary
-    methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    exposedHeaders: ["Authorization"],
-    optionsSuccessStatus: 200,
+	credentials: true,
+	origin: "https://sdc-frontend.onrender.com", //this will eventually be restricted on production
+	// method: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
+	// allowedHeader: ["Content-Type", "Authorization"],
+	// exposedHeader: ["Authorization"],
+	// optionsSuccessStatus: 200,
 };
-
-// Apply CORS middleware before routes
 app.use(cors(corsOption));
+
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-
-// Use the index router
 app.use("/", indexRouter);
+// axios.interceptors.request.use(
+//   (request)=>{
+//     request.headers
+//   }
+// )
 
-// Catch 404 and forward to error handler
+// catch 404 and forward to error handler
 app.use(function (req, res, next) {
-    next(createError(404));
+	next(createError(404));
 });
 
-// Error handler
+// error handler
 app.use(function (err, req, res, next) {
-    res.locals.message = err.message;
-    res.locals.error = req.app.get("env") === "development" ? err : {};
-    res.status(err.status || 500);
-    res.send(err);
+	// set locals, only providing error in development
+	res.locals.message = err.message;
+	res.locals.error = req.app.get("env") === "development" ? err : {};
+
+	// render the error page
+	res.status(err.status || 500);
+	res.send(err);
 });
 
-// Axios response interceptor
 axios.interceptors.response.use(
-    (response) => {
-        return response.data;
-    },
-    (error) => {
-        if (error.response.data.code == 401 || error.response.status == 401) {
-            // Handle unauthorized access
-        }
-        return error.response.data;
-    }
+	(response) => {
+		return response.data;
+	},
+	(error) => {
+		if (error.response.data.code == 401 || error.response.status == 401) {
+		}
+		return error.response.data;
+	}
 );
 
-// Start the server
 app.listen(5030, function () {
-    console.log("Running on port 5030");
+	console.log("running on port 5030");
 });
