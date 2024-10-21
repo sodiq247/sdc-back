@@ -21,6 +21,7 @@ const corsOption = {
 	// optionsSuccessStatus: 200,
 	credentials: true,
 };
+console.log(corsOption)
 app.use(cors(corsOption));
 
 app.use(logger("dev"));
