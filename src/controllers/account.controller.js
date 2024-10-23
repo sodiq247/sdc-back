@@ -13,11 +13,10 @@ module.exports = {
 
 			if (check === null) {
 				let newUser = await userService.create(req.body);
-				res.send({msg:"new user",newUser,check})
+				res.status(result.code).send(result);
 			} else {
 				result = responses.badRequest("User already exist");
 			}
-			res.status(result.code).send(result);
 		} catch (e) {
 			console.log(req.body);
 			throw e;
