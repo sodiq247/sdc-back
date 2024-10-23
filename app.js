@@ -17,7 +17,7 @@ const corsOption = {
 	origin: "*", //this will eventually be restricted on production
 	// method: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
 	// allowedHeader: ["Content-Type", "Authorization"],
-	// exposedHeader: ["Authorization"],
+	// exposedHeader: ["Authorization"],it
 	// optionsSuccessStatus: 200,
 	credentials: true,
 };
