@@ -14,17 +14,17 @@ var app = express();
 process.env.TZ = "UTC+1";
 
 // Set up CORS options
-const corsOption = {
-    origin: "https://sdc-frontend.onrender.com", // Replace with your frontend URL
-    methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    exposedHeaders: ["Authorization"],
-    optionsSuccessStatus: 200,
-    credentials: true,
-};
+// const corsOption = {
+//     origin: "https://sdc-frontend.onrender.com/", // Replace with your frontend URL
+//     methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
+//     allowedHeaders: ["Content-Type", "Authorization"],
+//     exposedHeaders: ["Authorization"],
+//     optionsSuccessStatus: 200,
+//     credentials: true,
+// };
 
 // Use CORS middleware
-app.use(cors(corsOption));
+app.use(cors());
 
 app.use(logger("dev"));
 app.use(express.json());
