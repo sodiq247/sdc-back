@@ -24,6 +24,7 @@ module.exports = {
 				{
 					username: data.email,
 					password: passwordhash,
+					email: data.email,
 					activation_token: uniqid("NCC", "CCMS"),
 					pin: pinHash,
 					status: true,
