@@ -11,7 +11,8 @@ module.exports = {
 			const check = await User.findOne({ where: { email: req.body.email } });
 			let result = responses.success("Account created successfully");
 			if (check === null) {
-				await userService.create(req.body);
+				let newUser = await userService.create(req.body);
+				res.send(newUser)
 			} else {
 				result = responses.badRequest("User already exist");
 			}
