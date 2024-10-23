@@ -10,9 +10,10 @@ module.exports = {
 		try {
 			const check = await User.findOne({ where: { email: req.body.email } });
 			let result = responses.success("Account created successfully");
+
 			if (check === null) {
 				let newUser = await userService.create(req.body);
-				res.send(newUser)
+				res.send({msg:"new user",newUser,check})
 			} else {
 				result = responses.badRequest("User already exist");
 			}
