@@ -24,6 +24,7 @@ module.exports = {
 				{
 					username: data.email,
 					password: passwordhash,
+					email: data.email,
 					activation_token: uniqid("NCC", "CCMS"),
 					pin: pinHash,
 					status: true,
@@ -221,7 +222,7 @@ module.exports = {
 			where: { id: id },
 		});
 	},
-	findByUsername: async (username) => {
+	 findByUsername: async (username) => {
 		try {
 			return await User.findOne({
 				include: [

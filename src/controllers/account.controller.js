@@ -3,18 +3,20 @@
 const responses = require("../helpers/responses");
 const jsonwebtoken = require("jsonwebtoken");
 const userService = require("../services/user.service");
-
+const db = require("../models");
+const { User } = db;
 module.exports = {
 	signup: async (req, res) => {
 		try {
-			let check = await userService.findByEmail(req.body.email);
+			const check = await User.findOne({ where: { email: req.body.email } });
 			let result = responses.success("Account created successfully");
+
 			if (check === null) {
-				await userService.create(req.body);
+				let newUser = await userService.create(req.body);
+				res.status(result.code).send(result);
 			} else {
 				result = responses.badRequest("User already exist");
 			}
-			res.status(result.code).send(result);
 		} catch (e) {
 			console.log(req.body);
 			throw e;
