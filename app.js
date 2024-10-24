@@ -12,7 +12,6 @@ const { default: axios } = require("axios");
 
 var app = express();
 process.env.TZ = "UTC+1";
-<<<<<<< HEAD
 const corsOption = {
 	
 	origin: "*", //this will eventually be restricted on production
@@ -24,21 +23,6 @@ const corsOption = {
 };
 console.log(corsOption)
 app.use(cors(corsOption));
-=======
-
-// Set up CORS options
-// const corsOption = {
-//     origin: "https://sdc-frontend.onrender.com/", // Replace with your frontend URL
-//     methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
-//     allowedHeaders: ["Content-Type", "Authorization"],
-//     exposedHeaders: ["Authorization"],
-//     optionsSuccessStatus: 200,
-//     credentials: true,
-// };
-
-// Use CORS middleware
-app.use(cors());
->>>>>>> 745684fb84d686ac471b4de036f182f7883b3b2e
 
 app.use(logger("dev"));
 app.use(express.json());
