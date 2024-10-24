@@ -46,8 +46,7 @@ module.exports = {
         amount: req.body.amount,
         mobile_number: req.body.mobile_number,
         Ported_number: true,
-        // airtime_type: req.body.airtime_type,
-        airtime_type: "VTU",
+        airtime_type: req.body.airtime_type,
       };
       let url = base_url + "api/topup/";
       let config = {
