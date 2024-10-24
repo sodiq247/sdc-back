@@ -221,24 +221,24 @@ module.exports = {
 			where: { id: id },
 		});
 	},
-	// findByUsername: async (username) => {
-	// 	try {
-	// 		return await User.findOne({
-	// 			include: [
-	// 				{
-	// 					model: Wallet,
-	// 				},
-	// 				{
-	// 					model: Profile,
-	// 				},
-	// 			],
-	// 			where: { username: username },
-	// 		});
-	// 	} catch (e) {
-	// 		console.log(e);
-	// 		throw e;
-	// 	}
-	// },
+	findByUsername: async (username) => {
+		try {
+			return await User.findOne({
+				include: [
+					{
+						model: Wallet,
+					},
+					{
+						model: Profile,
+					},
+				],
+				where: { username: username },
+			});
+		} catch (e) {
+			console.log(e);
+			throw e;
+		}
+	},
 	findByEmail: async (email) => {
 		try {
 			if (!helper.validateEmail(email)) {
